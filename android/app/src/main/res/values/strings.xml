@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Acompanat</string>
+    <string name="title_activity_main">Acompanat</string>
+    <string name="package_name">com.acompanat.app</string>
+    <string name="custom_url_scheme">com.acompanat.app</string>
+</resources>
