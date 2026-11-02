@@ -1,149 +1,175 @@
-import Link from "next/link";
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-200 font-sans selection:bg-cyan-900 selection:text-cyan-50">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col justify-between selection:bg-emerald-100 selection:text-emerald-800">
       
-      {/* Navegación Principal */}
-      <nav className="border-b border-slate-800 bg-[#020617]/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-cyan-600 flex items-center justify-center font-bold text-white text-xl">
-              A
-            </div>
-            <span className="text-xl font-semibold tracking-tight text-white">
-              AcompañaT
-            </span>
+      {/* HEADER / NAVEGACIÓN SUPERIOR */}
+      <header className="w-full border-b border-slate-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            {/* Aquí puedes ajustar la ruta si tu archivo se llama diferente en /public */}
+            <Image 
+              src="/logo-texto.png" 
+              alt="AcompañaT Logo" 
+              width={160} 
+              height={40} 
+              className="object-contain"
+              priority 
+            />
           </div>
-          <div className="flex gap-4">
+          <div className="flex items-center gap-4">
             <Link 
               href="/login" 
-              className="text-sm font-medium text-slate-300 hover:text-white px-3 py-2 transition-colors"
+              className="text-sm font-medium text-slate-600 hover:text-emerald-600 transition-colors px-4 py-2"
             >
-              Portal Pacientes
+              Iniciar Sesión
             </Link>
             <Link 
-              href="/login-corporativo" 
-              className="text-sm font-medium bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded-md transition-colors"
+              href="/login" 
+              className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-5 py-2.5 rounded-xl shadow-sm transition-all hover:shadow-md"
             >
-              Acceso Personal
+              Acceso a Portal
             </Link>
           </div>
         </div>
-      </nav>
+      </header>
 
-      {/* Hero Section */}
-      <main>
-        <section className="relative pt-24 pb-32 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span className="inline-block py-1 px-3 rounded-full bg-slate-800 text-cyan-400 text-sm font-semibold tracking-wider mb-6 border border-slate-700">
-              Porque estar lejos no significa dejar de cuidar
-            </span>
-            <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-8 max-w-4xl mx-auto leading-tight">
-              Envejezco con <span className="text-cyan-500">dignidad</span>, autonomía y cuidado profesional.
+      {/* HERO SECTION PRINCIPAL */}
+      <main className="flex-1 flex items-center justify-center px-6 py-12">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          
+          {/* Columna de Texto */}
+          <div className="space-y-6 text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs font-semibold tracking-wide uppercase">
+              <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+              Plataforma de Telemedicina Avanzada
+            </div>
+            
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+              Cuidado médico inteligente, <span className="text-emerald-600">cerca de ti.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-              Vivo mi envejecimiento acompañado y seguro en el lugar que más amo: mi hogar. Atención gerontogeriátrica especializada para tu tranquilidad y la de tu familia.
+            
+            <p className="text-slate-600 text-base md:text-lg leading-relaxed">
+              Conectamos pacientes, personal de enfermería y administración en un entorno seguro, sincronizado y optimizado para el seguimiento clínico en tiempo real.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link 
-                href="/registro" 
-                className="bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-lg px-8 py-4 rounded-xl shadow-[0_0_20px_rgba(8,145,178,0.3)] transition-all hover:scale-105"
+                href="/login" 
+                className="inline-flex justify-center items-center bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-8 py-3.5 rounded-xl shadow-md transition-all hover:shadow-lg text-base"
               >
-                Solicitar Evaluación Integral
+                Ingresar al Sistema
               </Link>
+              <a 
+                href="#accesos" 
+                className="inline-flex justify-center items-center bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium px-8 py-3.5 rounded-xl transition-colors text-base"
+              >
+                Conocer Perfiles
+              </a>
             </div>
           </div>
-        </section>
 
-        {/* Servicios Core */}
-        <section className="py-24 bg-slate-900/50 border-t border-slate-800/50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Soluciones de Cuidado Integral</h2>
-              <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-                Disminuimos la sobrecarga familiar garantizando una vigilancia continua y profesional, sin que el paciente abandone su entorno.
+          {/* Columna Visual / Logotipo Completo */}
+          <div className="flex justify-center items-center bg-slate-50 border border-slate-100 rounded-3xl p-8 md:p-12 shadow-sm relative overflow-hidden">
+            <div className="absolute -right-12 -bottom-12 w-48 h-48 bg-emerald-100/50 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="text-center space-y-6 z-10">
+              <Image 
+                src="/logo-completo.png" 
+                alt="AcompañaT Isotipo y Logotipo" 
+                width={260} 
+                height={260} 
+                className="object-contain mx-auto drop-shadow-md"
+              />
+              <p className="text-xs text-slate-500 font-medium tracking-wide uppercase">
+                Seguridad • Conectividad • Bienestar
               </p>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Card 1 */}
-              <div className="bg-slate-800/40 border border-slate-700 p-8 rounded-2xl hover:bg-slate-800/60 transition-colors">
-                <div className="w-12 h-12 bg-cyan-900/50 rounded-lg flex items-center justify-center mb-6 border border-cyan-800">
-                  <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">Teleenfermería</h3>
-                <p className="text-slate-400 leading-relaxed">
-                  Monitoreo a distancia con enfoque gerontogeriátrico para pacientes con enfermedades crónicas.
-                </p>
-              </div>
-
-              {/* Card 2 */}
-              <div className="bg-slate-800/40 border border-slate-700 p-8 rounded-2xl hover:bg-slate-800/60 transition-colors">
-                <div className="w-12 h-12 bg-cyan-900/50 rounded-lg flex items-center justify-center mb-6 border border-cyan-800">
-                  <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">Evaluación Integral</h3>
-                <p className="text-slate-400 leading-relaxed">
-                  Análisis completo de la salud y funcionalidad para prevenir el riesgo de deterioro y fragilidad.
-                </p>
-              </div>
-
-              {/* Card 3 */}
-              <div className="bg-slate-800/40 border border-slate-700 p-8 rounded-2xl hover:bg-slate-800/60 transition-colors">
-                <div className="w-12 h-12 bg-cyan-900/50 rounded-lg flex items-center justify-center mb-6 border border-cyan-800">
-                  <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">Signos Vitales</h3>
-                <p className="text-slate-400 leading-relaxed">
-                  Vigilancia remota de las condiciones de salud y orientación exacta sobre farmacoterapia.
-                </p>
-              </div>
-
-              {/* Card 4 */}
-              <div className="bg-slate-800/40 border border-slate-700 p-8 rounded-2xl hover:bg-slate-800/60 transition-colors">
-                <div className="w-12 h-12 bg-cyan-900/50 rounded-lg flex items-center justify-center mb-6 border border-cyan-800">
-                  <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">Red de Apoyo</h3>
-                <p className="text-slate-400 leading-relaxed">
-                  Capacitación continua para familiares y cuidadores primarios, fomentando la autonomía.
-                </p>
-              </div>
-            </div>
           </div>
-        </section>
 
-        {/* CTA Final */}
-        <section className="py-20 border-t border-slate-800">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-white mb-6">Exclusivo en CDMX y Estado de México</h2>
-            <p className="text-slate-400 mb-8 text-lg">
-              Diseñado para personas mayores de 65 años que valoran su independencia funcional y requieren atención accesible, rápida y cómoda desde el hogar.
-            </p>
-            <Link 
-              href="/login" 
-              className="inline-block bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-medium px-8 py-3 rounded-lg transition-colors"
-            >
-              Acceder al Portal
-            </Link>
-          </div>
-        </section>
+        </div>
       </main>
-      
-      {/* Footer */}
-      <footer className="border-t border-slate-800 py-8 text-center text-slate-500 text-sm">
-        <p>© {new Date().getFullYear()} AcompañaT. Todos los derechos reservados.</p>
-        <p className="mt-2">Atención gerontogeriátrica domiciliaria y servicios de teleenfermería.</p>
+
+      {/* SECCIÓN DE TARJETAS DE ACCESO RÁPIDO */}
+      <section id="accesos" className="bg-slate-50 border-t border-slate-100 py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">Portales Especializados</h2>
+            <p className="text-slate-600 text-sm">Acceso centralizado y seguro según el rol operativo dentro de la plataforma.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            {/* Tarjeta Paciente */}
+            <div className="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xl mb-6">
+                  P
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-2">Portal de Pacientes</h3>
+                <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                  Consulta tus citas programadas, edita tu información complementaria (tipo de sangre, NSS, domicilio) y revisa tu perfil médico.
+                </p>
+              </div>
+              <Link 
+                href="/login" 
+                className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm inline-flex items-center gap-1 group"
+              >
+                Acceder como Paciente <span className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
+            </div>
+
+            {/* Tarjeta Enfermería */}
+            <div className="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xl mb-6">
+                  E
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-2">Estación de Enfermería</h3>
+                <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                  Gestión de signos vitales, enlace de dispositivos médicos por Bluetooth y control directo de la atención al paciente.
+                </p>
+              </div>
+              <Link 
+                href="/login" 
+                className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm inline-flex items-center gap-1 group"
+              >
+                Acceder a Enfermería <span className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
+            </div>
+
+            {/* Tarjeta Administrador */}
+            <div className="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xl mb-6">
+                  A
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-2">Panel Administrativo</h3>
+                <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                  Supervisión general de usuarios, control de citas, flujos del sistema y administración de privilegios en la base de datos.
+                </p>
+              </div>
+              <Link 
+                href="/login" 
+                className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm inline-flex items-center gap-1 group"
+              >
+                Acceder como Admin <span className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-white border-t border-slate-100 py-8 px-6 text-center text-xs text-slate-500">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p>© 2026 AcompañaT. Todos los derechos reservados.</p>
+          <p className="text-emerald-600 font-medium">Plataforma de Telemedicina Conectada</p>
+        </div>
       </footer>
+
     </div>
   );
 }

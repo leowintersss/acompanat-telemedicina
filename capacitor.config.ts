@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'AcompañaT',
   webDir: 'out',
   server: {
-    url: 'http://10.0.2.2:3000',
+    url: "https://acompanat-telemedicina.vercel.app",
     cleartext: true
   }
 };
