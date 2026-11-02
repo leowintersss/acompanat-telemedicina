@@ -9,12 +9,11 @@ export default function Home() {
       <header className="w-full border-b border-slate-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* Aquí puedes ajustar la ruta si tu archivo se llama diferente en /public */}
             <Image 
               src="/logo-texto.png" 
               alt="AcompañaT Logo" 
-              width={160} 
-              height={40} 
+              width={240} 
+              height={120} 
               className="object-contain"
               priority 
             />
@@ -27,10 +26,13 @@ export default function Home() {
               Iniciar Sesión
             </Link>
             <Link 
-              href="/login" 
-              className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-5 py-2.5 rounded-xl shadow-sm transition-all hover:shadow-md"
+              href="/registro" 
+              className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-5 py-2.5 rounded-xl shadow-sm transition-all hover:shadow-md flex items-center gap-2"
             >
-              Acceso a Portal
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+              </svg>
+              Registro de Pacientes
             </Link>
           </div>
         </div>
@@ -58,16 +60,19 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link 
                 href="/login" 
-                className="inline-flex justify-center items-center bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-8 py-3.5 rounded-xl shadow-md transition-all hover:shadow-lg text-base"
+                className="inline-flex justify-center items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-8 py-3.5 rounded-xl shadow-md transition-all hover:shadow-lg text-base"
               >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                </svg>
                 Ingresar al Sistema
               </Link>
-              <a 
-                href="#accesos" 
-                className="inline-flex justify-center items-center bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium px-8 py-3.5 rounded-xl transition-colors text-base"
+              <Link 
+                href="/registro" 
+                className="inline-flex justify-center items-center gap-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium px-8 py-3.5 rounded-xl transition-colors text-base"
               >
-                Conocer Perfiles
-              </a>
+                Registrarse como Paciente
+              </Link>
             </div>
           </div>
 
@@ -104,58 +109,76 @@ export default function Home() {
             {/* Tarjeta Paciente */}
             <div className="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xl mb-6">
-                  P
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-6 shadow-sm">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">Portal de Pacientes</h3>
                 <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                  Consulta tus citas programadas, edita tu información complementaria (tipo de sangre, NSS, domicilio) y revisa tu perfil médico.
+                  Consulta tus citas programadas, edita tu información complementaria y revisa tu perfil médico en línea.
                 </p>
               </div>
-              <Link 
-                href="/login" 
-                className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm inline-flex items-center gap-1 group"
-              >
-                Acceder como Paciente <span className="transition-transform group-hover:translate-x-1">→</span>
-              </Link>
+              <div className="space-y-2 pt-2 border-t border-slate-100">
+                <Link 
+                  href="/login" 
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 rounded-xl text-sm transition-all text-center block shadow-sm"
+                >
+                  Iniciar Sesión
+                </Link>
+                <Link 
+                  href="/registro" 
+                  className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium py-2 rounded-xl text-xs transition-colors text-center block"
+                >
+                  ¿Nuevo paciente? Regístrate aquí
+                </Link>
+              </div>
             </div>
 
             {/* Tarjeta Enfermería */}
             <div className="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xl mb-6">
-                  E
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-6 shadow-sm">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">Estación de Enfermería</h3>
                 <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                  Gestión de signos vitales, enlace de dispositivos médicos por Bluetooth y control directo de la atención al paciente.
+                  Gestión de signos vitales, enlace de dispositivos médicos por Bluetooth y control directo de la atención.
                 </p>
               </div>
-              <Link 
-                href="/login" 
-                className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm inline-flex items-center gap-1 group"
-              >
-                Acceder a Enfermería <span className="transition-transform group-hover:translate-x-1">→</span>
-              </Link>
+              <div className="pt-2 border-t border-slate-100">
+                <Link 
+                  href="/login-corporativo" 
+                  className="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-xl text-sm transition-all text-center block shadow-sm"
+                >
+                  Acceso Enfermería
+                </Link>
+              </div>
             </div>
 
             {/* Tarjeta Administrador */}
             <div className="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xl mb-6">
-                  A
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-6 shadow-sm">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">Panel Administrativo</h3>
                 <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                  Supervisión general de usuarios, control de citas, flujos del sistema y administración de privilegios en la base de datos.
+                  Supervisión general de usuarios, control de citas, flujos del sistema y administración de privilegios.
                 </p>
               </div>
-              <Link 
-                href="/login" 
-                className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm inline-flex items-center gap-1 group"
-              >
-                Acceder como Admin <span className="transition-transform group-hover:translate-x-1">→</span>
-              </Link>
+              <div className="pt-2 border-t border-slate-100">
+                <Link 
+                  href="/login-corporativo" 
+                  className="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-xl text-sm transition-all text-center block shadow-sm"
+                >
+                  Acceso Administrador
+                </Link>
+              </div>
             </div>
 
           </div>
