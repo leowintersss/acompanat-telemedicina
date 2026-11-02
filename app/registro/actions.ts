@@ -2,7 +2,7 @@
 
 import { neon } from '@neondatabase/serverless'
 
-const sql = neon(process.env.DATABASE_URL!);
+const sql = neon(process.env.DATABASE_URL="postgresql://neondb_owner:npg_Ur4c6uKOFVaS@ep-crimson-dream-b49s2cbz-pooler.c-6.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require");
 // Paso 1: Registro básico con contraseña de 8+ caracteres y selectores independientes
 export async function registrarPaso1(datos: {
   nombre: string

@@ -5,29 +5,6 @@ import { revalidatePath } from "next/cache";
 
 const sql = neon(process.env.DATABASE_URL!);
 
-// a1) Guardar información opcional del paciente
-export async function actualizarPerfilPaciente(pacienteId: number, formData: FormData) {
-  try {
-    const alergias = formData.get("alergias") as string;
-    const tipoSangre = formData.get("tipoSangre") as string;
-    const contactoEmergencia = formData.get("contactoEmergencia") as string;
-    const telefonoEmergencia = formData.get("telefonoEmergencia") as string;
-
-    await sql`
-      UPDATE patients 
-      SET tipo_sangre = ${tipoSangre}, 
-          telefono = ${telefonoEmergencia}
-      WHERE id = ${pacienteId}
-    `;
-
-    revalidatePath("/paciente");
-    return { success: true, message: "La información se ha guardado con éxito." };
-  } catch (error) {
-    console.error("Error al actualizar perfil:", error);
-    return { success: false, message: "Hubo un error al guardar la información." };
-  }
-}
-
 // a2) Cambiar contraseña
 export async function cambiarPasswordPaciente(pacienteId: number, formData: FormData) {
   try {
@@ -67,5 +44,80 @@ export async function obtenerCitasFuturas(pacienteId: number) {
   } catch (error) {
     console.error("Error al obtener citas:", error);
     return [];
+  }
+}
+
+
+import { cookies } from 'next/headers';
+
+export async function obtenerSesionPaciente() {
+  try {
+    const cookieStore = await cookies();
+    const sessionCookie = cookieStore.get("session_user");
+    
+    if (sessionCookie) {
+      // Retorna el JSON extraído que usamos en el login
+      return JSON.parse(sessionCookie.value);
+    }
+    return null;
+  } catch (error) {
+    console.error("Error al leer la sesión del paciente:", error);
+    return null;
+  }
+}
+
+
+export async function obtenerDatosPaciente(pacienteId: number) {
+  try {
+    const sql = neon(process.env.DATABASE_URL!);
+    
+    // Agregamos rfc, nss, domicilio y membresia a la consulta
+    const res = await sql`
+      SELECT nombre_completo, email, curp, sexo, fecha_nacimiento, tipo_sangre, telefono, rfc, nss, domicilio, membresia 
+      FROM patients 
+      WHERE id = ${pacienteId}
+    `;
+    
+    if (res.length > 0) {
+      const paciente = res[0];
+      if (paciente.fecha_nacimiento instanceof Date) {
+        paciente.fecha_nacimiento = paciente.fecha_nacimiento.toISOString().split('T')[0];
+      }
+      return paciente;
+    }
+    return null;
+  } catch (error) {
+    console.error("Error obteniendo datos del paciente:", error);
+    return null;
+  }
+}
+
+export async function actualizarPerfilPaciente(pacienteId: number, formData: FormData) {
+  try {
+    const sql = neon(process.env.DATABASE_URL!);
+    
+    // Capturamos todos los campos del nuevo formulario
+    const tipoSangre = formData.get("tipoSangre")?.toString() || null;
+    const telefono = formData.get("telefono")?.toString() || null;
+    const rfc = formData.get("rfc")?.toString() || null;
+    const nss = formData.get("nss")?.toString() || null;
+    const domicilio = formData.get("domicilio")?.toString() || null;
+
+    // Actualizamos la base de datos
+    await sql`
+      UPDATE patients 
+      SET 
+        tipo_sangre = ${tipoSangre}, 
+        telefono = ${telefono},
+        rfc = ${rfc},
+        nss = ${nss},
+        domicilio = ${domicilio}
+      WHERE id = ${pacienteId}
+    `;
+
+    return { success: true, message: "Perfil actualizado correctamente" };
+  } catch (error) {
+    console.error("Error al actualizar perfil:", error);
+    return { success: false, message: "Hubo un error al actualizar los datos" };
   }
 }

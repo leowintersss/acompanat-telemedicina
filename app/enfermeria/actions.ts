@@ -2,6 +2,8 @@
 
 import { neon } from "@neondatabase/serverless";
 import { revalidatePath } from "next/cache";
+import { cookies } from 'next/headers';
+
 
 const sql = neon(process.env.DATABASE_URL!);
 
@@ -85,5 +87,19 @@ export async function obtenerCitasPaciente(pacienteId: number) {
   } catch (error) {
     console.error("Error BD Citas:", error);
     return [];
+  }
+}
+
+export async function obtenerSesionEnfermera() {
+  try {
+    const cookieStore = await cookies();
+    const sessionCookie = cookieStore.get("session_user");
+    if (sessionCookie) {
+      return JSON.parse(sessionCookie.value);
+    }
+    return null;
+  } catch (error) {
+    console.error("Error al leer sesión de enfermera:", error);
+    return null;
   }
 }

@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     /* Agregamos la clase 'dark' aquí para que aplique en todo el sistema */
-    <html lang="es" className="dark">
+    <html lang="es" className="dark" suppressHydrationWarning>
       <body className={`${inter.className} bg-slate-950 text-slate-100 min-h-screen`}>
        <Suspense fallback={<div className="bg-slate-900 min-h-screen flex items-center justify-center text-white">Cargando plataforma...</div>}>
   {children}
